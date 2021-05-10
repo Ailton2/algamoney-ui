@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="p-grid p-formgrid">
+
+      <div class="p-col-12" >
+         <h1>Pessoas</h1>
+      </div>
+
+      <div class="p-col-12 p-mb-2 p-fluid">
+           <label style="display: block;">Nome</label>
+           <input type="text" pInputText class="p-mb-2 p-d-block">
+      </div>
+      <div class="p-col-12 p-mb-4">
+        <button type="button" pRipple  pButton  >Pesquisar</button>
+      </div>
+
+
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-12">
+         <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
+        </div>
+
+    </div>
+    <div>
+        <button pButton >Nova Passoa</button>
+    </div>
+
+
+
+</div>

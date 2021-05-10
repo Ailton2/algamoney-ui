@@ -1,0 +1,39 @@
+<div class="container">
+      <div class="p-grid p-formgrid">
+    
+            <div class="p-col-12">
+                <h1>Lancamentos</h1>
+            </div>
+          
+            <div class="p-col-12  p-fluid" >
+              <label style="display: block;">Descricao</label>
+              <input pInputText type="text" >
+            </div>
+    
+            <div class="p-col-12">
+              <label style="display: block;">Vencimento</label>
+              <input pInputText type="text" style="width: 195px;" >
+              <label>ate</label>
+              <input pInputText type="text" style="width: 195px;" >
+            </div>
+  
+            <div class="p-col-12">
+                <button type="button" pRipple  pButton  >Pesquisar</button>
+            
+            </div>
+    
+      </div>
+  
+      <div class="p-grid">
+            <div class="p-col-12">
+                 <app-lancamento-grid [lancamentos]="lancamentos"></app-lancamento-grid>
+            </div>
+  
+        </div>
+      <div>
+          <a type="submit"  pButton >Novo lancamento</a>
+      
+      </div>
+  
+  
+    </div>

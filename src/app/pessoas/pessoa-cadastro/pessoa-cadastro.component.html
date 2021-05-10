@@ -1,0 +1,70 @@
+<div class="container">
+  <form action="">
+
+     <div class="p-grid p-formgrid">
+         
+        <div class="p-col-12">
+            <h1>Nova Pessoa</h1>
+        </div>
+        <div class="p-col-12 p-fluid">
+            <label>Nome</label>
+            <input pInputText type="text" required ngModel name="nome" minlength="5" #nome="ngModel">
+            <div *ngIf="nome.hasError('required') && nome.dirty">
+                <p-message severity="error" text="Informe o nome."></p-message>
+            </div>
+            <div *ngIf="nome.hasError('minlength') && nome.dirty">
+                <p-message severity="error" text="o minimo de 5 caractere."></p-message>
+            </div>
+           
+        </div>
+        <div class="p-col-9 p-fluid">
+            <label>Logradouro</label>
+            <input pInputText type="text" name="logradouro" required ngModel #logradouro="ngModel" >
+            <div *ngIf="logradouro.hasError('required') && logradouro.dirty ">
+                <p-message severity="error" text="Informe o logradouro."></p-message>
+            </div>
+        </div>
+        <div class="p-col-3 p-fluid">
+            <label>Numero</label>
+            <input pInputText type="text" name="numero" ngModel required #numero="ngModel">
+            <div *ngIf="numero.hasError('required') && numero.dirty">
+                <p-message severity="error" text="Informe o numero."></p-message>
+            </div>
+        </div>
+        <div class="p-col-5 p-fluid">
+            <label>Complemento</label>
+            <input pInputText type="text" >
+        </div>
+        <div class="p-col-5 p-fluid">
+            <label>Bairro</label>
+            <input pInputText type="text" name="bairro" required ngModel #bairro="ngModel">
+            <div *ngIf="bairro.hasError('required') && bairro.dirty">
+                <p-message severity="error" text="Informe o bairro."></p-message>
+            </div>
+        </div>
+        <div class="p-col-2 p-fluid">
+            <label>CEP</label>
+            <p-inputMask  mask="99999-999"  name="cep" ngModel></p-inputMask>
+        </div>
+        <div class="p-col-6 p-fluid">
+            <label>Cidade</label>
+            <input pInputText type="text" required name="cidade" ngModel>
+        </div>
+        <div class="p-col-6 p-fluid">
+            <label>Estado</label>
+            <input pInputText type="text" name="estado" required ngModel >
+        </div>
+         <div class="p-col-6">
+             <button type="submit" pButton class="p-button-info p-mr-2">Salvar</button>
+             <button type="submit" pButton class="p-button-info p-mr-2">Novo</button>
+             <button type="submit" pButton class="p-mr-2">Voltar</button>
+         </div>
+     </div>
+
+
+  </form>
+
+
+
+
+</div>
