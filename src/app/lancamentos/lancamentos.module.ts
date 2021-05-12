@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { LancamnetoCadastroComponent } from './lancamneto-cadastro/lancamneto-cadastro.component';
-import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 
@@ -21,10 +20,10 @@ import { MessageModule } from 'primeng/message';
 
 
 
+
 @NgModule({
   declarations: [
     LancamnetoCadastroComponent,
-    LancamentoGridComponent,
     LancamentosPesquisaComponent
   ],
   imports: [
@@ -42,6 +41,7 @@ import { MessageModule } from 'primeng/message';
     InputNumberModule,
     MessagesModule,
     MessageModule,
+  
   
   ],
 

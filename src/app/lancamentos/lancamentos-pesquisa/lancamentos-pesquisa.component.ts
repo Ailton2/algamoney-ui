@@ -1,19 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/api';
+import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent  {
 
-  lancamentos:any =[
+@Injectable()
+export class LancamentosPesquisaComponent implements OnInit  {
 
-    {tipo:'DESPESA',descricao:'compra de pao',dataVencimento:new Date(5/6/2017),
-    dataPagamento:null,valor:4.34 ,pessoa:'Seu ze'},
-    {tipo:'RECEITA',descricao:'compra ',dataVencimento:new Date(2018/5/30),
-    dataPagamento:new Date(2017/5/30),valor:8.34 ,pessoa:'DONA MARIA'},
-    {tipo:'RECEITA',descricao:'compra nada ',dataVencimento:new Date(2016/5/30),
-    dataPagamento:null,valor:89.34 ,pessoa:'DONA Joana'},
-  ]
+  filtro = new LancamentoFiltro();
+
+  lancamentos:any =[];
+
+  constructor(
+    private lancamantoService:LancamentoService,
+    private toasty:ToastyService,
+    private confirmation:ConfirmationService){}
+
+  ngOnInit(){
+    this.pesquisar();
+  }
+
+  pesquisar(){
+       this.lancamantoService.pesquisar()
+       .then(lancamentos => this.lancamentos = lancamentos);
+
+  }
+  pesquisarDesc(){
+
+    this.lancamantoService.pesquisarDesc(this.filtro)
+    .then(lancamentos => this.lancamentos = lancamentos);
+
+  }
+
+  ConfirmaExclusao(lancamento:any){
+        this.confirmation.confirm({
+        message :'Tem certeza que deseja excluir?',
+        accept:()=>{
+          this.excluir(lancamento);
+        }
+        });
+  }
+
+  excluir(lancamento:any){
+    this.lancamantoService.excluir(lancamento.id)
+    .then(()=>{
+      this.pesquisar()
+
+      this.toasty.success('Lancamento excluido com sucesso!');
+    });
+  }
 }
