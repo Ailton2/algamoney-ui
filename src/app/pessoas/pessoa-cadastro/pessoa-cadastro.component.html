@@ -1,14 +1,15 @@
 <div class="container">
-  <form action="">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvarPessoas(f)">
 
      <div class="p-grid p-formgrid">
          
         <div class="p-col-12">
             <h1>Nova Pessoa</h1>
         </div>
-        <div class="p-col-12 p-fluid">
+        <div class="p-col-12 p-mb-3 p-fluid">
             <label>Nome</label>
-            <input pInputText type="text" required ngModel name="nome" minlength="5" #nome="ngModel">
+            <input pInputText type="text" required name="nome" minlength="5" #nome="ngModel"
+            [(ngModel)]="pessoa.nome">
             <div *ngIf="nome.hasError('required') && nome.dirty">
                 <p-message severity="error" text="Informe o nome."></p-message>
             </div>
@@ -17,44 +18,45 @@
             </div>
            
         </div>
-        <div class="p-col-9 p-fluid">
+        <div class="p-col-9 p-mb-3 p-fluid">
             <label>Logradouro</label>
-            <input pInputText type="text" name="logradouro" required ngModel #logradouro="ngModel" >
+            <input pInputText type="text" name="logradouro" required [(ngModel)]="pessoa.logradouro" 
+                   #logradouro="ngModel" >
             <div *ngIf="logradouro.hasError('required') && logradouro.dirty ">
                 <p-message severity="error" text="Informe o logradouro."></p-message>
             </div>
         </div>
-        <div class="p-col-3 p-fluid">
+        <div class="p-col-3 p-mb-3 p-fluid">
             <label>Numero</label>
-            <input pInputText type="text" name="numero" ngModel required #numero="ngModel">
+            <input pInputText type="text" name="numero" [(ngModel)]="pessoa.numero" required #numero="ngModel">
             <div *ngIf="numero.hasError('required') && numero.dirty">
                 <p-message severity="error" text="Informe o numero."></p-message>
             </div>
         </div>
-        <div class="p-col-5 p-fluid">
+        <div class="p-col-5 p-mb-3 p-fluid">
             <label>Complemento</label>
             <input pInputText type="text" >
         </div>
-        <div class="p-col-5 p-fluid">
+        <div class="p-col-5 p-mb-3 p-fluid">
             <label>Bairro</label>
-            <input pInputText type="text" name="bairro" required ngModel #bairro="ngModel">
+            <input pInputText type="text" name="bairro" required [(ngModel)]="pessoa.bairro" #bairro="ngModel">
             <div *ngIf="bairro.hasError('required') && bairro.dirty">
                 <p-message severity="error" text="Informe o bairro."></p-message>
             </div>
         </div>
-        <div class="p-col-2 p-fluid">
+        <div class="p-col-2 p-mb-3 p-fluid">
             <label>CEP</label>
-            <p-inputMask  mask="99999-999"  name="cep" ngModel></p-inputMask>
+            <p-inputMask  mask="99999-999"  name="cep" [(ngModel)]="pessoa.cep" #cep="ngModel"></p-inputMask>
         </div>
-        <div class="p-col-6 p-fluid">
+        <div class="p-col-6 p-mb-3 p-fluid">
             <label>Cidade</label>
-            <input pInputText type="text" required name="cidade" ngModel>
+            <input pInputText type="text" required name="cidade" [(ngModel)]="pessoa.cidade">
         </div>
-        <div class="p-col-6 p-fluid">
+        <div class="p-col-6 p-mb-3 p-fluid">
             <label>Estado</label>
-            <input pInputText type="text" name="estado" required ngModel >
+            <input pInputText type="text" name="estado" required [(ngModel)]="pessoa.estado" >
         </div>
-         <div class="p-col-6">
+         <div class="p-col-6 p-mb-2" >
              <button type="submit" pButton class="p-button-info p-mr-2">Salvar</button>
              <button type="submit" pButton class="p-button-info p-mr-2">Novo</button>
              <button type="submit" pButton class="p-mr-2">Voltar</button>

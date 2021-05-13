@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpParams  } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpParams  } from '@angular/common/http';
 
 import * as moment from 'moment';
+import { Lancamento } from '../core/model';
 
 export class LancamentoFiltro{
   descricao:String;
@@ -21,6 +22,13 @@ lancamentosUrlFiltro='http://localhost:8080/lancamentos/filtro';
 
   constructor(private http:HttpClient) { }
 
+    //Headers
+    httpOptions={
+      headers : new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+   }
+
   pesquisar(): Promise<any>{
   return  this.http.get(`${this.lancamentosUrl}`)
      .toPromise()
@@ -28,23 +36,23 @@ lancamentosUrlFiltro='http://localhost:8080/lancamentos/filtro';
   }
 
   pesquisarDesc(filtro:LancamentoFiltro): Promise<any>{
-    const params = new HttpParams()
+    const httpParams = new HttpParams()
   
-    params.set('page',filtro.pagina.toString());
-    params.set('size',filtro.itensPorPagina.toString());
+    httpParams.set('page',filtro.pagina.toString());
+    httpParams.set('size',filtro.itensPorPagina.toString());
 
 
     if(filtro.descricao){
-      params.set('descricao',filtro.descricao.toString());
+      httpParams.set('descricao',filtro.descricao.toString());
     }
     if(filtro.dataVencimentoInicio){
-      params.set('dataVencimentoDe',moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD'));
+      httpParams.set('dataVencimentoDe',moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD'));
     }
     if(filtro.dataVencimentoFim){
-      params.set('dataVencimentoAte',moment(filtro.dataVencimentoFim).format('YYYY-MM-DD'));
+      httpParams.set('dataVencimentoAte',moment(filtro.dataVencimentoFim).format('YYYY-MM-DD'));
     }
 
-    return  this.http.get(this.lancamentosUrlFiltro ,{ params})
+    return  this.http.get(this.lancamentosUrlFiltro ,{ params:httpParams})
     .pipe(
    
     )
@@ -53,13 +61,29 @@ lancamentosUrlFiltro='http://localhost:8080/lancamentos/filtro';
     }
 
     excluir(id:number):Promise<void>{
-
-
        return this.http.delete(`${this.lancamentosUrl}/${id}`)
        .toPromise()
        .then()
 
-
     }
+
+    getLancamentoPorDescricao(){
+      const httpParams = new HttpParams({
+          fromObject:{
+            descricao:'sal'
+          }
+
+      });
+
+     return this.http.get(this.lancamentosUrlFiltro,{params:httpParams})
+    }
+
+    salvarLancamento(lancamento:Lancamento){
+    return  this.http.post(this.lancamentosUrl,JSON.stringify(lancamento),this.httpOptions)
+       .toPromise()
+       .then(response => response);
+    }
+
+
 
 }

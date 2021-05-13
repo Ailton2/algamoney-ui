@@ -1,4 +1,8 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import localept from '@angular/common/locales/pt';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common';
+registerLocaleData(localept, 'pt');
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -6,13 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
-import { NavbarComponent } from './core/navbar/navbar.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentoService } from './lancamentos/lancamento.service';
-import { ToastyModule } from 'ng2-toasty';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+
+
+
 
 
 
@@ -29,14 +31,12 @@ import { ConfirmationService } from 'primeng/api';
     AppRoutingModule,
     CoreModule,
     HttpClientModule ,
-    ConfirmDialogModule,
-    ToastyModule.forRoot()
-    
-
-
 
   ],
-  providers: [LancamentoService,ConfirmationService],
+  providers: [
+   
+    { provide:LOCALE_ID,useValue:'pt'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
