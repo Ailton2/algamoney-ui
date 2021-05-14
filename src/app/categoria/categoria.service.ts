@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Categoria } from '../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CategoriaService {
 
 
 
-  buscaCategorias(){
+  buscaCategorias():Promise<Categoria[]>{
      return this.httpClient.get(this.categoriaUrl)
     .toPromise()
     .then()

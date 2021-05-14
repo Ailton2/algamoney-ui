@@ -21,8 +21,7 @@ export class PessoaService {
      })
   }
 
-  todasPessoas(){
-
+  todasPessoas():Promise<Pessoa[]>{
     return this.httpClient.get(this.pessoasUrl)
     .toPromise()
     .then()

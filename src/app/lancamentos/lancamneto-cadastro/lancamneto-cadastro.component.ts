@@ -24,7 +24,7 @@ export class LancamnetoCadastroComponent implements OnInit {
        { label : 'Despesa', value:'DESPESA'}
   ];
 
-  categorias=[{label:'Alimentacao',value:1}];
+  categorias:any[];
 
   pessoas:any=[];
 
@@ -100,15 +100,17 @@ export class LancamnetoCadastroComponent implements OnInit {
   listarCategorias(){
    return this.categoriaService.buscaCategorias()
       
-     .then(categorias => {
-      //  this.categorias = categorias.map(c => ({label:c.nome,value:c.id}));
+     .then(lista => {
+       this.categorias = lista.map(c => ({label:c.nome,value:c.id}));
       })
      .catch(erro => this.errorHandler.handler(erro))
   }
 
   listarPessoas(){
     this.pessoasService.todasPessoas()
-    .then(dados => this.pessoas = dados)
+    .then(dados => {
+        this.pessoas = dados.map(p => ({label:p.nome,value:p.id}))
+    })
     .catch(erro => this.errorHandler.handler(erro));
    
     

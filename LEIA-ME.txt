@@ -1,0 +1,4 @@
+Iniciar o o projeto com o comando "NPM INSTALL" 
+
+----------------------------------------------------
+
