@@ -18,7 +18,8 @@ export class PessoaCadastroComponent implements OnInit {
               private toasty:ToastyService,
               private route:ActivatedRoute) { }
 
-  pessoa:any=[];
+  pessoa=new Pessoa();
+
 
   ngOnInit(): void {
 
@@ -65,10 +66,10 @@ export class PessoaCadastroComponent implements OnInit {
 
   atualizarPessoa(form:NgForm){
     this.pessoaSevice.atualizar(this.pessoa)
-    .then(() => {
+    .then(pessoa  => {
+      this.pessoa = pessoa;
       this.toasty.success('Pessoa atualizada!')
-      form.reset()
-      this.pessoa = new Pessoa();
+ 
 
     })
     .catch(erro => this.errorHandler.handler(erro))

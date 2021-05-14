@@ -5,10 +5,12 @@ export class Pessoa{
     numero:string;
     cep:string;
     bairro:string;
+    complemento:string;
     cidade:string;
     estado:string;
     ativo:boolean=true;
    }
+   
    
    export class Categoria{
        id:number;
