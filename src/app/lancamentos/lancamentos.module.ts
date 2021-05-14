@@ -17,6 +17,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,6 +30,7 @@ import { MessageModule } from 'primeng/message';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
 
     InputTextModule,
     ButtonModule,

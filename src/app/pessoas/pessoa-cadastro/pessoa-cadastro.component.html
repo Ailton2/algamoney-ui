@@ -1,5 +1,5 @@
 <div class="container">
-  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvarPessoas(f)">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
 
      <div class="p-grid p-formgrid">
          
@@ -57,9 +57,9 @@
             <input pInputText type="text" name="estado" required [(ngModel)]="pessoa.estado" >
         </div>
          <div class="p-col-6 p-mb-2" >
-             <button type="submit" pButton class="p-button-info p-mr-2">Salvar</button>
-             <button type="submit" pButton class="p-button-info p-mr-2">Novo</button>
-             <button type="submit" pButton class="p-mr-2">Voltar</button>
+             <button type="submit"  pButton class="p-button-info p-mr-2">Salvar</button>
+             <button routerLink="/pessoas" pButton class="p-button-info p-mr-2">Pesquisar</button>
+             
          </div>
      </div>
 

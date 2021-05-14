@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -21,9 +22,11 @@ export class LancamentosPesquisaComponent implements OnInit  {
     private lancamantoService:LancamentoService,
     private errorHandler:ErrorHandlerService,
     private toasty:ToastyService,
-    private confirmation:ConfirmationService){}
+    private confirmation:ConfirmationService,
+    private title:Title){}
 
   ngOnInit(){
+     this.title.setTitle('Pesquisa de Lancamentos')
     this.pesquisar();
   }
 

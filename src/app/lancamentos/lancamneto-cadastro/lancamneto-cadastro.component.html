@@ -2,7 +2,7 @@
     <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
       <div class="p-grid p-formgrid " >
          <div class="p-col-12">
-             <h1>Novo Lancamento</h1>
+             <h1>{{ editando ? 'Edicao de ' :'Novo ' }}Lançamentos</h1>
          </div>
          <div class="p-col-12 p-mb-2">
              <p-selectButton name="tipo" [(ngModel)]="lancamento.tipo" [options]="tipos" #tipo>
@@ -51,14 +51,13 @@
             name="pessoa"  [(ngModel)]="lancamento.pessoa"></p-dropdown>
         </div>
         <div class="p-col-12 p-mb-2 p-fluid">
-            <label>Observacao</label>
+            <label>Observação</label>
             <textarea pInputTextarea rows="3" [(ngModel)]="lancamento.observacao"></textarea>
         </div>
 
         <div class="p-col-12 ">
             <button pButton type="submit" class="p-mr-2 p-mb-2">Salvar</button>
-            <button pButton type="submit" class="p-button-info p-mr-2 p-mb-2">Novo</button>
-            <button pButton type="submit" class="p-button-info p-mr-2 p-mb-2">Voltar</button>
+            <a pButton  (click)="novo(f)" label="Novo" class=" p-mr-2 p-mb-2"></a>
         </div>
      
       </div>

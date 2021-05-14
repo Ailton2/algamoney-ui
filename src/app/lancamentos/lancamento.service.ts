@@ -53,9 +53,7 @@ lancamentosUrlFiltro='http://localhost:8080/lancamentos/filtro';
     }
 
     return  this.http.get(this.lancamentosUrlFiltro ,{ params:httpParams})
-    .pipe(
-   
-    )
+    .pipe()
        .toPromise()
        .then(response => response)
     }
@@ -84,6 +82,40 @@ lancamentosUrlFiltro='http://localhost:8080/lancamentos/filtro';
        .then(response => response);
     }
 
-
-
+    atualizar(lancamento: Lancamento): Promise<Lancamento> {
+      return this.http.put(`${this.lancamentosUrl}/${lancamento.id}`,
+          JSON.stringify(lancamento),this.httpOptions)
+        .toPromise()
+        .then(response => {
+          const lancamentoAlterado = response as Lancamento;
+  
+          this.converterStringsParaDatas([lancamentoAlterado]);
+  
+          return lancamentoAlterado;
+        });
+    }
+  
+    buscarPorCodigo(id: number): Promise<Lancamento> {
+      return this.http.get(`${this.lancamentosUrl}/${id}`)
+        .toPromise()
+        .then(response => {
+          const lancamento = response as Lancamento;
+          
+          this.converterStringsParaDatas([lancamento]);
+  
+          return lancamento;
+        });
+    }
+  
+    private converterStringsParaDatas(lancamentos: Lancamento[]) {
+      for (const lancamento of lancamentos) {
+        lancamento.dataVencimento = moment(lancamento.dataVencimento,
+          'YYYY-MM-DD').toDate();
+  
+        if (lancamento.dataPagamento) {
+          lancamento.dataPagamento = moment(lancamento.dataPagamento,
+            'YYYY-MM-DD').toDate();
+        }
+      }
+    }
 }

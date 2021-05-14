@@ -15,9 +15,9 @@ export class CategoriaService {
 
   buscaCategorias(){
      return this.httpClient.get(this.categoriaUrl)
-     .toPromise()
-     .then()
-
+    .toPromise()
+    .then()
+    
   }
 
 }

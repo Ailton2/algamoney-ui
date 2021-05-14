@@ -12,6 +12,7 @@ export class Pessoa{
    
    export class Categoria{
        id:number;
+       nome:string;
    }
 
 export class Lancamento{

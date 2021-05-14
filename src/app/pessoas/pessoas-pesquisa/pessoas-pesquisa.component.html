@@ -42,8 +42,8 @@
                   </a>
                 </td>
                 <td >
-                  <a pButton class="pi pi-pencil " pTooltip="Editar" tooltipPosition="top"></a>
-                  <button pButton class="pi pi-trash " pTooltip="Excluir" tooltipPosition="top"
+                  <a pButton [routerLink]="['/pessoas',pes.id]" class="pi pi-pencil " pTooltip="Editar" tooltipPosition="top"></a>
+                  <button  pButton class="pi pi-trash " pTooltip="Excluir" tooltipPosition="top"
                       (click)="ConfirmaExclusao(pes)" ></button>
                 </td>
             </tr>
@@ -54,7 +54,7 @@
 
     </div>
     <div>
-        <button pButton >Nova Passoa</button>
+        <button pButton routerLink="/pessoas/novo" >Nova Passoa</button>
     </div>
 
 

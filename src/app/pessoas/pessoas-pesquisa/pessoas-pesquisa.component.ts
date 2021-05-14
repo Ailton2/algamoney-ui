@@ -9,9 +9,13 @@ import { PessoaService } from '../pessoa.service';
   templateUrl: './pessoas-pesquisa.component.html',
   styleUrls: ['./pessoas-pesquisa.component.css']
 })
-export class PessoasPesquisaComponent  {
+export class PessoasPesquisaComponent implements OnInit  {
 
   pessoas:any=[]
+
+  ngOnInit(): void {
+    this.pesquisarTodos()
+  }
 
   constructor(
           private pessoaService:PessoaService,
@@ -34,7 +38,7 @@ export class PessoasPesquisaComponent  {
       message :'Tem certeza que deseja excluir?',
       accept:()=>{
         this.excluir(pessoa);
-        this.pesquisarTodos();
+      
       }
      
      })
@@ -44,7 +48,8 @@ export class PessoasPesquisaComponent  {
   excluir(pessoa:any){
     this.pessoaService.deletar(pessoa.id)
     .then(()=>{
-      this.toasty.success('Lancamento excluido com sucesso!');
+      this.toasty.success('Pessoa excluido com sucesso!');
+      this.pesquisarTodos();
     })
     .catch(erro => this.errorHandler.handler(erro));
     

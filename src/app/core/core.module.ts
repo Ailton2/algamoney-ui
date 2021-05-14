@@ -8,15 +8,21 @@ import { ToastyModule } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { PessoaService } from '../pessoas/pessoa.service';
+import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    
 
     ConfirmDialogModule,
     ToastyModule.forRoot()
@@ -30,7 +36,8 @@ import { PessoaService } from '../pessoas/pessoa.service';
     ErrorHandlerService,
     LancamentoService,
     ConfirmationService,
-    PessoaService
+    PessoaService,
+    Title,
   ]
 
 })

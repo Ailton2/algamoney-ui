@@ -51,8 +51,20 @@ export class PessoaService {
 
   }
 
-  
+  buscarPorCodigo(id:number){
+    return this.httpClient.get(this.pessoasUrl+'/'+id)
+    .toPromise()
+    
 
+
+  }
+
+  atualizar(pessoa:Pessoa){
+  return this.httpClient.put(this.pessoasUrl+'/'+pessoa.id,this.httpOptions)
+    .toPromise()
+    .then(pessoa => pessoa)
+
+  }
 
 
 

@@ -14,10 +14,6 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent
